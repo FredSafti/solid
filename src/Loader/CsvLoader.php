@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace solid;
+namespace solid\Loader;
 
-class Loader
+class CsvLoader extends AbstractLoader
 {
     public function load(string $file): array
     {

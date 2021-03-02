@@ -2,31 +2,32 @@
 
 declare(strict_types=1);
 
-namespace solid;
+namespace solid\Repository;
 
 use PDO;
 use PDOException;
 
-class Repository
+abstract class AbstractRepository
 {
-    private PDO $db;
+    protected PDO $db;
 
     public function __construct(PDO $db)
     {
         $this->db = $db;
     }
 
+    abstract protected function beforeSave(): void;
+    abstract protected function insert(array $record): void;
+
     public function save(array $records): void
     {
         try {
             $this->db->beginTransaction();
 
-            $stmt = $this->db->prepare('TRUNCATE imported');
-            $stmt->execute();
+            $this->beforeSave();
 
             foreach ($records as $record) {
-                $stmt = $this->db->prepare('INSERT INTO imported VALUES (?, ?, ?)');
-                $stmt->execute($record);
+                $this->insert($record);
             }
 
             $this->db->commit();

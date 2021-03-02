@@ -1,8 +1,8 @@
 <?php
 
-use solid\CsvDataImporter;
-use solid\Loader;
-use solid\Repository;
+use solid\DataImporter;
+use solid\Loader\CsvLoader;
+use solid\Repository\ImportedRepository;
 
 require 'vendor/autoload.php';
 
@@ -12,8 +12,8 @@ $db = new PDO(
     'local'
 );
 
-$loader = new Loader();
-$repository = new Repository($db);
+$loader = new CsvLoader();
+$repository = new ImportedRepository($db);
 
-$importer = new CsvDataImporter($loader, $repository);
+$importer = new DataImporter($loader, $repository);
 $importer->import('var/import/data.csv');
