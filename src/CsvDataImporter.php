@@ -7,16 +7,15 @@ use PDOException;
 
 class CsvDataImporter
 {
-    private const DB_DSN = 'mysql:host=localhost;port=3306;dbname=solid';
-    private const DB_USER = 'solid';
-    private const DB_PASSW = 'local';
-
     private PDO $db;
+
+    public function __construct(PDO $db)
+    {
+        $this->db = $db;
+    }
 
     public function import($file): void
     {
-        $this->db = new PDO(self::DB_DSN, self::DB_USER, self::DB_PASSW);
-
         $records = $this->loadFile($file);
         $this->importData($records);
     }
