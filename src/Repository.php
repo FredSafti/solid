@@ -21,7 +21,7 @@ class Repository
         try {
             $this->db->beginTransaction();
 
-            $stmt = $this->db->prepare('TRUNCATE imported');
+            $stmt = $this->db->prepare('DELETE FROM imported');
             $stmt->execute();
 
             foreach ($records as $record) {
