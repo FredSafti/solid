@@ -1,0 +1,25 @@
+{
+    "name": "fredsafti/solid",
+    "description": "Implementation solid",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Fred Blanc",
+            "email": "frederic.blanc@new-immo-group.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "solid\\": "src/"
+        }
+    },
+    "require": {},
+    "autoload-dev": {
+        "psr-4": {
+            "tests\\": "tests/"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    }
+}
