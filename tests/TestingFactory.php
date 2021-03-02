@@ -29,7 +29,8 @@ class TestingFactory
         $db->query('CREATE TABLE users (
             id TINYINT NOT NULL,
             login TINTYTEXT NOT NULL,
-            fullname TINYTEXT NOT NULL
+            fullname TINYTEXT NOT NULL,
+            active TINYINT NOT NULL DEFAULT 1
         )');
 
         $db->query('CREATE TABLE imported (
