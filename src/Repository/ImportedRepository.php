@@ -8,7 +8,7 @@ class ImportedRepository extends AbstractRepository
 {
     public function beforeSave(): void
     {
-        $stmt = $this->db->prepare('TRUNCATE imported');
+        $stmt = $this->db->prepare('DELETE FROM imported');
         $stmt->execute();
     }
 
