@@ -8,29 +8,18 @@ use PDOException;
 class CsvDataImporter
 {
     private PDO $db;
+    private Loader $loader;
 
-    public function __construct(PDO $db)
+    public function __construct(Loader $loader, PDO $db)
     {
         $this->db = $db;
+        $this->loader = $loader;
     }
 
     public function import($file): void
     {
-        $records = $this->loadFile($file);
+        $records = $this->loader->load($file);
         $this->importData($records);
-    }
-
-    private function loadFile($file): array
-    {
-        $records = array();
-        if (false !== $handle = fopen($file, 'r')) {
-            while ($record = fgetcsv($handle, 0, ';')) {
-                $records[] = $record;
-            }
-        }
-        fclose($handle);
-
-        return $records;
     }
 
     private function importData(array $records): void

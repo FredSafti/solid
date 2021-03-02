@@ -1,6 +1,7 @@
 <?php
 
 use solid\CsvDataImporter;
+use solid\Loader;
 
 require 'vendor/autoload.php';
 
@@ -10,5 +11,7 @@ $db = new PDO(
     'local'
 );
 
-$importer = new CsvDataImporter($db);
+$loader = new Loader();
+
+$importer = new CsvDataImporter($loader, $db);
 $importer->import('var/import/data.csv');
