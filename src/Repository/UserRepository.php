@@ -14,7 +14,7 @@ class UserRepository extends AbstractRepository implements UserListsInterface
 
     public function insert(array $record): void
     {
-        $stmt = $this->db->prepare('INSERT INTO users VALUES (?, ?, ?)');
+        $stmt = $this->db->prepare('INSERT INTO users (id, login, fullname) VALUES (?, ?, ?)');
         $stmt->execute($record);
     }
 
