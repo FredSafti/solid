@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace tests;
 
-use PDO;
 use PHPUnit\Framework\TestCase;
 use solid\CsvDataImporter;
 use solid\Loader;
@@ -14,11 +13,7 @@ class CsvDataImporterTest extends TestCase
 {
     public function testImport()
     {
-        $db = new PDO(
-            'mysql:host=localhost;port=3306;dbname=solid',
-            'solid',
-            'local'
-        );
+        $db = TestingFactory::createDbConnection();
 
         $loader = new Loader();
         $repository = new Repository($db);
@@ -26,10 +21,6 @@ class CsvDataImporterTest extends TestCase
         $importer = new CsvDataImporter($loader, $repository);
         $importer->import('var/import/data.csv');
 
-        $stmt = $db->prepare('SELECT COUNT(*) AS nb FROM imported');
-        $stmt->execute();
-        $res = $stmt->fetch();
-
-        $this->assertEquals(3, $res['nb']);
+        $this->assertSame(3, $repository->getCount());
     }
 }

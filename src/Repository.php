@@ -36,4 +36,13 @@ class Repository
             throw $e;
         }
     }
+
+    public function getCount(): int
+    {
+        $stmt = $this->db->prepare('SELECT COUNT(*) AS nb FROM imported');
+        $stmt->execute();
+        $res = $stmt->fetch();
+
+        return (int) $res['nb'];
+    }
 }
