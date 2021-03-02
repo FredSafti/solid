@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace tests;
 
-use PDO;
 use PHPUnit\Framework\TestCase;
 use solid\DataImporter;
 use solid\Loader\CsvLoader;

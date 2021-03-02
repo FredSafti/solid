@@ -8,7 +8,7 @@ class UserRepository extends AbstractRepository
 {
     public function beforeSave(): void
     {
-        $stmt = $this->db->prepare('TRUNCATE users');
+        $stmt = $this->db->prepare('DELETE FROM users');
         $stmt->execute();
     }
 
