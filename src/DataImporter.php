@@ -2,23 +2,23 @@
 
 namespace solid;
 
-use solid\Loader\FileLoader;
+use solid\Loader\LoaderInterface;
 use solid\Repository\AbstractRepository;
 
 class DataImporter
 {
-    private FileLoader $loader;
+    private LoaderInterface $loader;
     private AbstractRepository $repository;
 
-    public function __construct(FileLoader $loader, AbstractRepository $repository)
+    public function __construct(LoaderInterface $loader, AbstractRepository $repository)
     {
         $this->loader = $loader;
         $this->repository = $repository;
     }
 
-    public function import($file): void
+    public function import(): void
     {
-        $records = $this->loader->load($file);
+        $records = $this->loader->load();
         $this->repository->save($records);
     }
 }
