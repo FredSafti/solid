@@ -13,7 +13,7 @@ class CsvDataImporterTest extends TestCase
 {
     public function testImport()
     {
-        $db = TestingFactory::createDbConnection();
+        $db = TestingFacility::createDbConnection();
 
         $loader = new Loader();
         $repository = new Repository($db);
