@@ -15,6 +15,6 @@ class FileLoader implements LoaderInterface
 
     public function load(): array
     {
-        return unserialize(file_get_contents($this->filename));
+        return json_decode(file_get_contents($this->filename), true);
     }
 }
