@@ -6,7 +6,7 @@ namespace tests;
 
 use PDO;
 
-class TestingFactory
+class TestingFacility
 {
     public static function createDbConnection(): PDO
     {

@@ -14,7 +14,7 @@ class DataImporterTest extends TestCase
 {
     public function testImport()
     {
-        $db = TestingFactory::createDbConnection();
+        $db = TestingFacility::createDbConnection();
 
         $loader = new CsvLoader('var/import/data.csv');
         $repository = new ImportedRepository($db);
@@ -27,7 +27,7 @@ class DataImporterTest extends TestCase
 
     public function testUsers()
     {
-        $db = TestingFactory::createDbConnection();
+        $db = TestingFacility::createDbConnection();
 
         $loader = new CsvLoader('var/import/users.csv');
         $repository = new UserRepository($db);
