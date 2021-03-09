@@ -13,7 +13,7 @@ class MailingTest extends TestCase
     public function testMailing(): void
     {
         $mailing = new Mailing(
-            new UserRepository(TestingFactory::createDbConnection())
+            new UserRepository(TestingFacility::createDbConnection())
         );
 
         $result = $mailing->sendForActives();
