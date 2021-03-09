@@ -8,6 +8,6 @@ class FileLoader
 {
     public function load(string $filename): array
     {
-        return unserialize(file_get_contents($filename));
+        return json_decode(file_get_contents($filename), true);
     }
 }
