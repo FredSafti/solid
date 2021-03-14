@@ -8,13 +8,12 @@ class ImportedRepository extends AbstractRepository
 {
     public function beforeSave(): void
     {
-        $stmt = $this->db->prepare('DELETE FROM imported');
-        $stmt->execute();
+        $this->db->exec('DELETE FROM imported');
     }
 
     public function insert(array $record): void
     {
-        $stmt = $this->db->prepare('INSERT INTO imported VALUES (?, ?, ?)');
-        $stmt->execute($record);
+        $this->db->prepare('INSERT INTO imported VALUES (?, ?, ?)')
+            ->execute($record);
     }
 }
