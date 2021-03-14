@@ -8,6 +8,7 @@ use DateTimeImmutable;
 
 class JsonLoader implements LoaderInterface
 {
+    private string $filename;
     private array $content = [];
 
     public function __construct(string $filename)

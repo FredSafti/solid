@@ -6,6 +6,8 @@ namespace solid\Loader;
 
 class CsvLoader implements LoaderInterface
 {
+    private string $filename;
+
     public function __construct(string $filename)
     {
         $this->filename = $filename;
