@@ -8,11 +8,13 @@ use DateTimeImmutable;
 
 class JsonLoader extends CsvLoader
 {
-    private array $content;
+    private array $content = [];
 
     private function loadFile(): void
     {
-        $this->content = json_decode(file_get_contents($this->filename), true);
+        if (empty($this->content)) {
+            $this->content = json_decode(file_get_contents($this->filename), true);
+        }
     }
 
     public function load(): array
