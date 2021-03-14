@@ -16,4 +16,11 @@ class ImportedRepository extends AbstractRepository
         $this->db->prepare('INSERT INTO imported VALUES (?, ?, ?)')
             ->execute($record);
     }
+
+    public function getCount(): int
+    {
+        $data = $this->db->query('SELECT COUNT(*) AS nb FROM imported')
+            ->fetch();
+        return (int) $data['nb'];
+    }
 }
