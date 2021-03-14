@@ -2,15 +2,15 @@
 
 namespace solid;
 
-use solid\Loader\AbstractLoader;
+use solid\Loader\CsvLoader;
 use solid\Repository\AbstractRepository;
 
 class DataImporter
 {
-    private AbstractLoader $loader;
+    private CsvLoader $loader;
     private AbstractRepository $repository;
 
-    public function __construct(AbstractLoader $loader, AbstractRepository $repository)
+    public function __construct(CsvLoader $loader, AbstractRepository $repository)
     {
         $this->loader = $loader;
         $this->repository = $repository;

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace solid\Loader;
 
-class CsvLoader extends AbstractLoader
+class CsvLoader
 {
     public function load(string $file): array
     {
