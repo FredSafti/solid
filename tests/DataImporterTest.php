@@ -7,6 +7,7 @@ namespace tests;
 use PHPUnit\Framework\TestCase;
 use solid\DataImporter;
 use solid\Loader\CsvLoader;
+use solid\Loader\JsonLoader;
 use solid\Repository\ImportedRepository;
 use solid\Repository\UserRepository;
 
@@ -29,12 +30,12 @@ class DataImporterTest extends TestCase
     {
         $db = TestingFacility::createDbConnection();
 
-        $loader = new CsvLoader('var/import/users.csv');
+        $loader = new JsonLoader('var/import/users.json');
         $repository = new UserRepository($db);
 
         $importer = new DataImporter($loader, $repository);
         $importer->import();
 
-        $this->assertSame(3, $repository->getCount());
+        $this->assertSame(2, $repository->getCount());
     }
 }

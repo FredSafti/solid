@@ -4,8 +4,13 @@ declare(strict_types=1);
 
 namespace solid\Loader;
 
-class CsvLoader extends FileLoader implements LoaderInterface
+class CsvLoader implements LoaderInterface
 {
+    public function __construct(string $filename)
+    {
+        $this->filename = $filename;
+    }
+
     public function load(): array
     {
         $records = array();
