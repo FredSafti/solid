@@ -12,11 +12,11 @@ class JsonLoaderTest extends TestCase
 {
     public function testDate(): void
     {
-        $loader = new JsonLoader();
+        $loader = new JsonLoader('var/import/users.json');
 
         $this->assertEquals(
             new DateTimeImmutable('2021-03-12T17:13:10+01:00'),
-            $loader->getDate('var/import/users.json')
+            $loader->getDate()
         );
     }
 }
