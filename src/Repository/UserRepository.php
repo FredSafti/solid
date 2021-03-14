@@ -19,8 +19,7 @@ class UserRepository extends AbstractRepository implements UserListsInterface
 
     public function getActives(): array
     {
-        $stmt = $this->db->prepare('SELECT * FROM users WHERE active = 1');
-        $stmt->execute();
-        return $stmt->fetchAll();
+        return $this->db->query('SELECT * FROM users WHERE active = 1')
+            ->fetchAll();
     }
 }
