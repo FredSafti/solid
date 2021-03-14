@@ -21,12 +21,11 @@ class Repository
         try {
             $this->db->beginTransaction();
 
-            $stmt = $this->db->prepare('DELETE FROM imported');
-            $stmt->execute();
+            $this->db->exec('DELETE FROM imported');
 
             foreach ($records as $record) {
-                $stmt = $this->db->prepare('INSERT INTO imported VALUES (?, ?, ?)');
-                $stmt->execute($record);
+                $this->db->prepare('INSERT INTO imported VALUES (?, ?, ?)')
+                    ->execute($record);
             }
 
             $this->db->commit();
@@ -39,10 +38,9 @@ class Repository
 
     public function getCount(): int
     {
-        $stmt = $this->db->prepare('SELECT COUNT(*) AS nb FROM imported');
-        $stmt->execute();
-        $res = $stmt->fetch();
+        $data = $this->db->query('SELECT COUNT(*) AS nb FROM imported')
+            ->fetch();
 
-        return (int) $res['nb'];
+        return (int) $data['nb'];
     }
 }
