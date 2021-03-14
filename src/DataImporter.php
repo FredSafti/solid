@@ -16,9 +16,9 @@ class DataImporter
         $this->repository = $repository;
     }
 
-    public function import($file): void
+    public function import(): void
     {
-        $records = $this->loader->load($file);
+        $records = $this->loader->load();
         $this->repository->save($records);
     }
 }

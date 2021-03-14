@@ -16,11 +16,11 @@ class DataImporterTest extends TestCase
     {
         $db = TestingFacility::createDbConnection();
 
-        $loader = new CsvLoader();
+        $loader = new CsvLoader('var/import/data.csv');
         $repository = new ImportedRepository($db);
 
         $importer = new DataImporter($loader, $repository);
-        $importer->import('var/import/data.csv');
+        $importer->import();
 
         $this->assertSame(3, $repository->getCount());
     }
@@ -29,11 +29,11 @@ class DataImporterTest extends TestCase
     {
         $db = TestingFacility::createDbConnection();
 
-        $loader = new CsvLoader();
+        $loader = new CsvLoader('var/import/users.csv');
         $repository = new UserRepository($db);
 
         $importer = new DataImporter($loader, $repository);
-        $importer->import('var/import/users.csv');
+        $importer->import();
 
         $this->assertSame(3, $repository->getCount());
     }
