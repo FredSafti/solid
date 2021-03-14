@@ -17,6 +17,13 @@ class UserRepository extends AbstractRepository implements UserListsInterface
             ->execute($record);
     }
 
+    public function getCount(): int
+    {
+        $data = $this->db->query('SELECT COUNT(*) AS nb FROM users')
+            ->fetch();
+        return (int) $data['nb'];
+    }
+
     public function getActives(): array
     {
         return $this->db->query('SELECT * FROM users WHERE active = 1')
