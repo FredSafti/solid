@@ -8,13 +8,12 @@ class UserRepository extends AbstractRepository
 {
     public function beforeSave(): void
     {
-        $stmt = $this->db->prepare('DELETE FROM users');
-        $stmt->execute();
+        $this->db->exec('DELETE FROM users');
     }
 
     public function insert(array $record): void
     {
-        $stmt = $this->db->prepare('INSERT INTO users (id, login, fullname) VALUES (?, ?, ?)');
-        $stmt->execute($record);
+        $this->db->prepare('INSERT INTO users (id, login, fullname) VALUES (?, ?, ?)')
+            ->execute($record);
     }
 }

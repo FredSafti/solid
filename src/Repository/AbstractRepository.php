@@ -40,10 +40,9 @@ abstract class AbstractRepository
 
     public function getCount(): int
     {
-        $stmt = $this->db->prepare('SELECT COUNT(*) AS nb FROM imported');
-        $stmt->execute();
-        $res = $stmt->fetch();
+        $data = $this->db->query('SELECT COUNT(*) AS nb FROM imported')
+            ->fetch();
 
-        return (int) $res['nb'];
+        return (int) $data['nb'];
     }
 }
