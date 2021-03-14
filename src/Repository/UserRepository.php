@@ -16,4 +16,11 @@ class UserRepository extends AbstractRepository
         $this->db->prepare('INSERT INTO users (id, login, fullname) VALUES (?, ?, ?)')
             ->execute($record);
     }
+
+    public function getCount(): int
+    {
+        $data = $this->db->query('SELECT COUNT(*) AS nb FROM users')
+            ->fetch();
+        return (int) $data['nb'];
+    }
 }

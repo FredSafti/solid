@@ -19,6 +19,8 @@ abstract class AbstractRepository
     abstract protected function beforeSave(): void;
     abstract protected function insert(array $record): void;
 
+    abstract public function getCount(): int;
+
     public function save(array $records): void
     {
         try {
@@ -36,13 +38,5 @@ abstract class AbstractRepository
             $this->db->rollback();
             throw $e;
         }
-    }
-
-    public function getCount(): int
-    {
-        $data = $this->db->query('SELECT COUNT(*) AS nb FROM imported')
-            ->fetch();
-
-        return (int) $data['nb'];
     }
 }
