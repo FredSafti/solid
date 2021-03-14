@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace solid\Loader;
 
-class FileLoader
+class JsonLoader extends CsvLoader
 {
     public function load(string $filename): array
     {
