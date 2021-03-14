@@ -8,25 +8,27 @@ use DateTimeImmutable;
 
 class JsonLoader extends CsvLoader
 {
-    private function loadFile(string $filename): array
+    private array $content;
+
+    private function loadFile(): void
     {
-        return json_decode(file_get_contents($filename), true);
+        $this->content = json_decode(file_get_contents($this->filename), true);
     }
 
-    public function load(string $filename): array
+    public function load(): array
     {
-        $content = $this->loadFile($filename);
+        $this->loadFile();
 
         return array_map(
             fn ($value) => array_values($value),
-            $content['users']
+            $this->content['users']
         );
     }
 
-    public function getDate(string $filename): DateTimeImmutable
+    public function getDate(): DateTimeImmutable
     {
-        $content = $this->loadFile($filename);
+        $this->loadFile();
 
-        return new DateTimeImmutable($content['updatedAt']);
+        return new DateTimeImmutable($this->content['updatedAt']);
     }
 }
