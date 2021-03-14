@@ -6,7 +6,7 @@ namespace solid\Loader;
 
 use DateTimeImmutable;
 
-class JsonLoader extends CsvLoader implements LoaderInterface
+class JsonLoader implements LoaderInterface
 {
     private array $content = [];
 
