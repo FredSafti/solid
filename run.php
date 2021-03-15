@@ -12,8 +12,8 @@ $db = new PDO(
     'local'
 );
 
-$loader = new Loader('var/import/data.csv');
-$repository = new Repository($db);
+$loader = new CsvLoader('var/import/data.csv');
+$repository = new ImportedRepository($db);
 
-$importer = new CsvDataImporter($loader, $repository);
+$importer = new DataImporter($loader, $repository);
 $importer->import();
